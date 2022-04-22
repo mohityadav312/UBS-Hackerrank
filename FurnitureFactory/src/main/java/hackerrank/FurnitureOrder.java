@@ -3,44 +3,49 @@ package hackerrank;
 import java.util.HashMap;
 
 public class FurnitureOrder implements FurnitureOrderInterface {
-    /**
-     * TODO: Create a map of Furniture items to order quantities
-     */
     private Map<Furniture,Integer> furnitureOrderMap;
 
-    /**
-     * Initialize a new mapping of Furniture types to order quantities.
-     */
     FurnitureOrder() {
         this.furnitureOrderMap = new HashMap<>();
     }
 
     public void addToOrder(final Furniture type, final int furnitureCount) {
-        // TODO: Complete the method
+        this.furnitureOrderMap.put(type,furnitureCount);
     }
 
     public HashMap<Furniture, Integer> getOrderedFurniture() {
-        // TODO: Complete the method
-        return null;
+        return this.furnitureOrderMap;
     }
 
     public float getTotalOrderCost() {
-        // TODO: Complete the method
-        return -1.0f;
+        float totalOrderCost = 0.0f;
+        for (Map.Entry<Furniture,Integer> furnitureOrderEntry : this.furnitureOrderMap.entrySet()) {
+            totalOrderCost = totalOrderCost + (furnitureOrderEntry.getKey().cost()*furnitureOrderEntry.getValue());
+        }
+        return totalOrderCost;
     }
 
     public int getTypeCount(Furniture type) {
-        // TODO: Complete the method
-        return -1;
+        int typeCount = 0;
+        for (Map.Entry<Furniture,Integer> furnitureOrderEntry : this.furnitureOrderMap.entrySet()) {
+            if(furnitureOrderEntry.getKey().label().equals(type.label())){
+                typeCount = typeCount + furnitureOrderEntry.getValue();
+            }
+        }
+        return typeCount;
     }
 
     public float getTypeCost(Furniture type) {
-        // TODO: Complete the method
-        return -1.0f;
+        float typeCost = 0.0f;
+        for (Map.Entry<Furniture,Integer> furnitureOrderEntry : this.furnitureOrderMap.entrySet()) {
+            if(furnitureOrderEntry.getKey().label().equals(type.label())){
+                typeCost = typeCost + furnitureOrderEntry.getKey().cost();
+            }
+        }
+        return typeCost;
     }
 
     public int getTotalOrderQuantity() {
-        // TODO: Complete the method
-        return -1;
+        return this.furnitureOrderMap.values().stream().mapToInt(Integer::parseInt).sum();
     }
 }

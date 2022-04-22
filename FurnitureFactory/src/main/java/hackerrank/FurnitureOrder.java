@@ -6,12 +6,13 @@ public class FurnitureOrder implements FurnitureOrderInterface {
     /**
      * TODO: Create a map of Furniture items to order quantities
      */
+    private Map<Furniture,Integer> furnitureOrderMap;
 
     /**
      * Initialize a new mapping of Furniture types to order quantities.
      */
     FurnitureOrder() {
-        // TODO: Complete the constructor
+        this.furnitureOrderMap = new HashMap<>();
     }
 
     public void addToOrder(final Furniture type, final int furnitureCount) {
